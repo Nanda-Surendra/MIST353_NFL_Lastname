@@ -5,7 +5,7 @@
 
 -- DROP database NFL_RDB_Lastname;
 
-use MIST353_NFL_RDB_Lastname;
+use MIST353_NFL_Lastname;
 
 if(OBJECT_ID('Team') is not null)
     drop table Team;
