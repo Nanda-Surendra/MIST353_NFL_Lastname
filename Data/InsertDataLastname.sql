@@ -2,7 +2,7 @@
 -- Insert all the ConferenceDivision data (8 rows)
 -- Insert team data for AFC North (4 rows)
 
-use MIST353_NFL_RDB_Lastname;
+use MIST353_NFL_Lastname;
 
 insert into ConferenceDivision (Conference, Division)
 values ('AFC', 'North'),

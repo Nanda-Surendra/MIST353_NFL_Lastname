@@ -1,3 +1,4 @@
+
 -- Create a database for NFL app
 -- use master; 
 
