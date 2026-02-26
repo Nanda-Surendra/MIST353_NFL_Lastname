@@ -1,7 +1,7 @@
 -- 3 queries
 -- 1 each for ConferenceDivision and Team tables, and 1 join query
 
-use MIST353_NFL_Lastname;
+use MIST353_NFL_RDB_Lastname;
 
 /*
 1. User searches for teams using Conference name (optional) and / or Division name (optional)
@@ -34,3 +34,13 @@ execute procGetTeamsByConferenceDivision
 
 
 go
+
+select * from Team;
+
+declare @myTeamName nvarchar(50) = 'Pittsburgh Steelers';
+
+select OtherTeam.TeamName
+from Team MyTeam inner join Team OtherTeam
+    on MyTeam.ConferenceDivisionID = OtherTeam.ConferenceDivisionID 
+where MyTeam.TeamName = @myTeamName and
+    OtherTeam.TeamName != @myTeamName; 
