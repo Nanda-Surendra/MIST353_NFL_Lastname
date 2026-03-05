@@ -1,19 +1,6 @@
 -- 3 queries
 -- 1 each for ConferenceDivision and Team tables, and 1 join query
 
-use master;
-
-create LOGIN NandaSurendraDemo WITH PASSWORD = 'MI$T353Instructor';
-
-use MIST353_NFL_Lastname;
-
-CREATE USER NandaSurendraDemo
-FOR LOGIN NandaSurendraDemo;
-
-GRANT EXECUTE TO NandaSurendraDemo;
-
-GRANT SELECT TO NandaSurendraDemo;
-
 /*
 1. User searches for teams using Conference name (optional) and / or Division name (optional)
 To show: TeamName, ConferenceName, DivisionName
