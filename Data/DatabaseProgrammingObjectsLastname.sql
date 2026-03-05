@@ -1,7 +1,18 @@
 -- 3 queries
 -- 1 each for ConferenceDivision and Team tables, and 1 join query
 
-use MIST353_NFL_RDB_Lastname;
+use master;
+
+create LOGIN NandaSurendraDemo WITH PASSWORD = 'MI$T353Instructor';
+
+use MIST353_NFL_Lastname;
+
+CREATE USER NandaSurendraDemo
+FOR LOGIN NandaSurendraDemo;
+
+GRANT EXECUTE TO NandaSurendraDemo;
+
+GRANT SELECT TO NandaSurendraDemo;
 
 /*
 1. User searches for teams using Conference name (optional) and / or Division name (optional)
@@ -9,7 +20,6 @@ To show: TeamName, ConferenceName, DivisionName
 */
 
 go
-
 
 
 create or alter procedure procGetTeamsByConferenceDivision
@@ -32,15 +42,20 @@ execute procGetTeamsByConferenceDivision
 */
 
 
-
 go
 
-select * from Team;
-
-declare @myTeamName nvarchar(50) = 'Pittsburgh Steelers';
-
-select OtherTeam.TeamName
-from Team MyTeam inner join Team OtherTeam
-    on MyTeam.ConferenceDivisionID = OtherTeam.ConferenceDivisionID 
-where MyTeam.TeamName = @myTeamName and
-    OtherTeam.TeamName != @myTeamName; 
+create OR alter procedure procGetTeamsInSameConferenceDivisionAsSpecifiedTeam
+(
+    @TeamName NVARCHAR(50)
+)
+AS
+BEGIN
+    select OtherTeam.TeamName, CD.Conference, CD.Division
+    from Team MyTeam inner join Team OtherTeam
+        on MyTeam.ConferenceDivisionID = OtherTeam.ConferenceDivisionID
+        inner join ConferenceDivision CD
+        on MyTeam.ConferenceDivisionID = CD.ConferenceDivisionID
+    where MyTeam.TeamName = @TeamName and
+        OtherTeam.TeamName != @TeamName;
+END
+-- execute procGetTeamsInSameConferenceDivisionAsSpecifiedTeam @TeamName = 'Baltimore Ravens';
