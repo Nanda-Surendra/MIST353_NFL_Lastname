@@ -1,13 +1,3 @@
-
--- Create a database for NFL app
--- use master; 
-
--- CREATE DATABASE MIST353_NFL_RDB_Lastname;
-
--- DROP database NFL_RDB_Lastname;
-
-use MIST353_NFL_Lastname;
-
 if(OBJECT_ID('Team') is not null)
     drop table Team;
 if(OBJECT_ID('ConferenceDivision') is not null)

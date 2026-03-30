@@ -2,8 +2,6 @@
 -- Insert all the ConferenceDivision data (8 rows)
 -- Insert team data for AFC North (4 rows)
 
-use MIST353_NFL_Lastname;
-
 insert into ConferenceDivision (Conference, Division)
 values ('AFC', 'North'),
        ('AFC', 'South'),
@@ -15,7 +13,7 @@ values ('AFC', 'North'),
        ('NFC', 'West');
 
 GO
-select * from ConferenceDivision order by ConferenceDivisionID;
+--select * from ConferenceDivision order by ConferenceDivisionID;
 
 GO
 insert into Team (TeamName, TeamCityState, TeamColors, ConferenceDivisionID)
@@ -61,6 +59,6 @@ VALUES
 ('Seattle Seahawks', 'Seattle, WA', 'College Navy, Action Green', 8);
 
 GO
-select * from Team order by TeamID;
+--select * from Team order by TeamID;
 
 
