@@ -1,6 +1,3 @@
--- 3 queries
--- 1 each for ConferenceDivision and Team tables, and 1 join query
-
 /*
 1. User searches for teams using Conference name (optional) and / or Division name (optional)
 To show: TeamName, ConferenceName, DivisionName
@@ -46,3 +43,20 @@ BEGIN
         OtherTeam.TeamName != @TeamName;
 END
 -- execute procGetTeamsInSameConferenceDivisionAsSpecifiedTeam @TeamName = 'Baltimore Ravens';
+
+GO
+
+create or alter procedure procValidateUser
+(
+    @Email NVARCHAR(100),
+    @PasswordHash NVARCHAR(200)
+)
+AS
+BEGIN
+    select AppUserID, Firstname + ' ' + Lastname as Fullname, UserRole
+    from AppUser
+    where Email = @Email and 
+    PasswordHash = Convert(VARBINARY(200), @PasswordHash, 1);
+END
+-- execute procValidateUser @Email = 'tom.brady@example.com', @PasswordHash = '0x01';
+-- select * from AppUser;
