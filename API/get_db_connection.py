@@ -1,5 +1,6 @@
 import os
-import pyodbc
+#import pyodbc
+import pymssql
 from dotenv import load_dotenv
 
 load_dotenv()
