@@ -1,6 +1,6 @@
 import os
-#import pyodbc
-import pymssql
+import pyodbc
+#import pymssql
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -11,7 +11,7 @@ def get_db_connection():
     username = os.getenv("DB_LOGIN")
     password = os.getenv("DB_PASSWORD")
     #ODBC Driver 18 for SQL Server can ONLY be used in Synchronous mode
-    #connection_string = f"DRIVER={{ODBC Driver 18 for SQL Server}};SERVER={server};DATABASE={database};UID={username};PWD={password};"
-    #connection_string += "Encrypt=yes;TrustServerCertificate=yes;Connection Timeout=30;"
+    connection_string = f"DRIVER={{ODBC Driver 18 for SQL Server}};SERVER={server};DATABASE={database};UID={username};PWD={password};"
+    connection_string += "Encrypt=yes;TrustServerCertificate=yes;Connection Timeout=30;"
     
-    return pymssql.connect(server=server, user=username, password=password, database=database)
+    return pyodbc.connect(connection_string)
