@@ -8,7 +8,7 @@ def get_teams_for_specified_fan(
     conn = get_db_connection()
     cursor = conn.cursor(as_dict=True)
     #cursor.callproc("procGetTeamsForSpecifiedFan", (fan_id))
-    cursor.execute("exec procGetTeamsForSpecifiedFan %s", (fan_id,))
+    cursor.execute("exec procGetTeamsForSpecifiedFan %s", (fan_id))#for single param, use execute with exec procName param
     rows = cursor.fetchall()
     conn.close()
 
