@@ -1,3 +1,5 @@
+
+
 /*
 1. User searches for teams using Conference name (optional) and / or Division name (optional)
 To show: TeamName, ConferenceName, DivisionName
@@ -63,26 +65,9 @@ END
 
 GO
 
--- create or alter procedure procGetTeamsForSpecifiedFan
--- (
---     @NFLFanID INT
--- )
--- AS
--- BEGIN
---     select T.TeamName, CD.Conference, CD.Division, T.TeamColors
---     from NFLFan F 
---         inner join Team T
---         on F.NFLFanID = T.TeamID
---         inner join ConferenceDivision CD
---         on T.ConferenceDivisionID = CD.ConferenceDivisionID
---     where F.NFLFanID = @NFLFanID;
--- end;
--- execute procGetTeamsForSpecifiedFan @NFLFanID = 1;
--- execute procGetTeamsForSpecifiedFan @NFLFanID = 2;
-
-create or alter procedure procGetTeamsByFanID
+create or alter procedure procGetTeamsForSpecifiedFan
 (
-    @FanID INT
+    @NFLFanID INT
 )
 AS
 BEGIN
@@ -91,8 +76,24 @@ BEGIN
         on FT.TeamID = T.TeamID
         inner join ConferenceDivision CD
         on T.ConferenceDivisionID = CD.ConferenceDivisionID
-    where FT.NFLFanID = @FanID;
-END
+    where FT.NFLFanID = @NFLFanID;
+end;
+-- execute procGetTeamsForSpecifiedFan @NFLFanID = 1;
+-- execute procGetTeamsForSpecifiedFan @NFLFanID = 2;
+
+-- create or alter procedure procGetTeamsByFanID
+-- (
+--     @FanID INT
+-- )
+-- AS
+-- BEGIN
+--     select T.TeamName, CD.Conference, CD.Division, T.TeamColors, FT.PrimaryTeam
+--     from FanTeam FT inner join Team T
+--         on FT.TeamID = T.TeamID
+--         inner join ConferenceDivision CD
+--         on T.ConferenceDivisionID = CD.ConferenceDivisionID
+--     where FT.NFLFanID = @FanID;
+-- END
 
 -- execute procGetTeamsByFanID @FanID = 1;
 -- execute procGetTeamsByFanID @FanID = 2;
