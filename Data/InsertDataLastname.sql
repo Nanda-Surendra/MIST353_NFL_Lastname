@@ -347,4 +347,11 @@ go
     @AwayTeamScore = 13,
     @NFLAdminID = 8; -- Mike Tomlin
 
+
+select * from AppUser order by AppUserID;
+
+bill.belichick@example.com
+sean.mcay@example.com
+mike.tomlin@example.com
+andy.reid@example.com
 */
